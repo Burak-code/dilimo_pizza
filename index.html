@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#14100f">
+<title>Dilimo Pizza | Her Dilimde Mutluluk</title>
+<link rel="icon" type="image/png" href="dilimo_nobg.png">
+<style>
+:root{
+  --red:#e5232d;
+  --red-dark:#bd1721;
+  --bg:#14100f;
+  --bg-soft:#1d1614;
+  --card:#221a17;
+  --border:#3a2a24;
+  --cream:#f3e7dd;
+  --muted:#b3a096;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--cream);
+  font-family:Arial,Helvetica,sans-serif;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+/* NAVBAR */
+.navbar{
+  height:86px;
+  padding:0 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--bg-soft);
+  position:relative;
+  z-index:100;
+  border-bottom:1px solid var(--border);
+}
+.brand img{
+  width:125px;
+  height:72px;
+  object-fit:contain;
+  display:block;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:38px;
+}
+.nav-links button{
+  background:transparent;
+  border:0;
+  color:var(--cream);
+  font-size:15px;
+  font-weight:750;
+  padding:0;
+  transition:.2s;
+}
+.nav-links button:hover{color:var(--red)}
+.nav-links .menu-link{
+  color:#fff !important;
+  background:var(--red);
+  padding:15px 27px;
+  border-radius:12px;
+  font-size:17px;
+  box-shadow:0 0 8px #ff263c,0 0 18px #ff263c,0 0 35px #ff263c77;
+  animation:menuGlow 1.6s infinite alternate;
+}
+@keyframes menuGlow{
+  from{box-shadow:0 0 7px #ff263c,0 0 14px #ff263c66}
+  to{box-shadow:0 0 13px #ff263c,0 0 28px #ff263c,0 0 42px #ff263c88}
+}
+.cart-button{
+  border:0;
+  background:#f3e7dd;
+  color:#14100f;
+  padding:13px 17px;
+  border-radius:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+.cart-button:hover{background:var(--red);color:#fff}
+
+/* SEKMELER */
+.tab-page{display:none}
+.tab-page.active{display:block;animation:fade .25s ease}
+@keyframes fade{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* HERO */
+.hero{
+  min-height:calc(100vh - 86px);
+  padding:65px 8%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:45px;
+  background:
+    radial-gradient(ellipse at 80% 40%,#3d1b16 0,transparent 55%),
+    linear-gradient(120deg,#14100f,#1c1310);
+}
+.hero-content{max-width:570px}
+.hero-tag{
+  display:inline-block;
+  color:#ff8a8a;
+  background:#3a1714;
+  padding:9px 15px;
+  border-radius:30px;
+  font-weight:bold;
+  font-size:12px;
+  letter-spacing:1.5px;
+}
+.hero h1{
+  font-size:clamp(45px,6vw,76px);
+  line-height:1.03;
+  letter-spacing:-3px;
+  margin:22px 0 16px;
+}
+.hero h1 span{color:var(--red)}
+.hero p{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:17px;
+  max-width:440px;
+}
+.hero-actions{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.primary-btn{
+  background:var(--red);
+  color:white;
+  border:0;
+  padding:16px 25px;
+  border-radius:12px;
+  font-weight:bold;
+  font-size:16px;
+  box-shadow:0 7px 20px #e5232d55;
+  transition:.2s;
+}
+.primary-btn:hover{
+  background:var(--red-dark);
+  transform:translateY(-2px);
+}
+.secondary-btn{
+  border:2px solid var(--border);
+  color:var(--cream);
+  background:transparent;
+  padding:14px 22px;
+  border-radius:12px;
+  font-weight:bold;
+}
+.secondary-btn:hover{border-color:var(--red)}
+.hero-image{position:relative}
+.hero-image img{
+  width:100%;
+  height:390px;
+  object-fit:cover;
+  border-radius:28px;
+  box-shadow:0 25px 55px #0008;
+  transform:rotate(2deg);
+}
+.hero-sticker{
+  position:absolute;
+  bottom:-18px;
+  left:-20px;
+  background:var(--red);
+  color:white;
+  border-radius:50%;
+  width:105px;
+  height:105px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-size:14px;
+  font-weight:900;
+  line-height:1.3;
+  transform:rotate(-12deg);
+  box-shadow:0 8px 20px #e5232d55;
+}
+
+/* COMMON */
+.section{padding:75px 8%}
+.section-heading{text-align:center;margin-bottom:35px}
+.section-heading .eyebrow{
+  color:var(--red);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+.section-heading h2{
+  font-size:clamp(30px,4vw,43px);
+  margin:10px 0;
+  letter-spacing:-1px;
+}
+.section-heading p{
+  color:var(--muted);
+  margin:0;
+  line-height:1.6;
+}
+
+/* MENU */
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:23px;
+}
+.product{
+  border:1px solid var(--border);
+  background:var(--card);
+  border-radius:19px;
+  overflow:hidden;
+  transition:.25s;
+  display:flex;
+  flex-direction:column;
+}
+.product:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 35px #0009;
+  border-color:var(--red);
+}
+.product-image{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+}
+.product-info{
+  padding:19px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+.product h3{font-size:19px;margin:0 0 8px}
+.product p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin:0 0 18px;
+  min-height:42px;
+}
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:auto;
+}
+.price{font-size:20px;font-weight:900}
+.add-btn{
+  border:0;
+  background:var(--red);
+  color:white;
+  border-radius:10px;
+  padding:11px 16px;
+  font-weight:bold;
+}
+.add-btn:hover{background:var(--red-dark)}
+
+/* ABOUT */
+.about-section{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:55px;
+  align-items:center;
+  min-height:calc(100vh - 86px);
+}
+.about-img-wrap{
+  background:#0f0b0a;
+  border-radius:22px;
+  padding:20px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--border);
+}
+.about-section img{
+  width:100%;
+  max-height:330px;
+  object-fit:contain;
+  display:block;
+}
+.about-section h2{
+  font-size:clamp(30px,4vw,42px);
+  margin:10px 0 18px;
+}
+.about-section p{
+  color:var(--muted);
+  line-height:1.9;
+  font-size:15px;
+}
+.about-label{
+  color:var(--red);
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+/* FEATURES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  padding:35px 8%;
+  background:#0f0b0a;
+  color:white;
+  text-align:center;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.feature{padding:10px}
+.feature .emoji{font-size:30px}
+.feature h3{font-size:16px;margin:10px 0 5px}
+.feature p{color:#9a8a80;font-size:12px;margin:0}
+
+/* CART */
+.order-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  max-width:1100px;
+  margin:auto;
+}
+.panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:25px;
+}
+.panel h3{margin:0 0 20px;font-size:21px}
+.empty-cart{
+  text-align:center;
+  color:var(--muted);
+  padding:35px 0;
+}
+.cart-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+.cart-row strong{font-size:14px}
+.cart-row small{color:var(--muted)}
+.qty{display:flex;align-items:center;gap:9px}
+.qty button{
+  width:28px;height:28px;
+  border:0;border-radius:7px;
+  background:#3a2a24;
+  color:var(--cream);
+  font-weight:bold;
+}
+.qty button:hover{background:var(--red);color:#fff}
+.total{
+  display:flex;
+  justify-content:space-between;
+  font-size:21px;
+  font-weight:900;
+  margin-top:20px;
+}
+label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin:15px 0 7px;
+}
+input,textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:#171110;
+  padding:13px;
+  border-radius:10px;
+  outline:none;
+  color:var(--cream);
+}
+input::placeholder,textarea::placeholder{color:#7d6c63}
+input:focus,textarea:focus{border-color:var(--red)}
+textarea{min-height:85px;resize:vertical}
+.payment{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.pay-option{
+  border:1px solid var(--border);
+  padding:13px;
+  border-radius:10px;
+  margin:5px 0;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  background:#171110;
+  user-select:none;
+}
+.pay-option.disabled{opacity:.55}
+.pay-option.disabled:hover{border-color:var(--red)}
+.pay-option input{width:auto;margin:0}
+.submit-btn{width:100%;margin-top:20px;padding:16px}
+.notice{
+  color:#8a776d;
+  font-size:11px;
+  line-height:1.6;
+}
+#message{
+  display:none;
+  padding:14px;
+  margin-top:15px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* CONTACT */
+.contact-section{
+  text-align:center;
+  min-height:calc(100vh - 86px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.contact-section h2{
+  font-size:36px;
+  margin:10px 0;
+}
+.contact-section p{color:var(--muted);line-height:1.7}
+
+/* Bizim insta - üst orta */
+.own-insta-wrap{
+  display:flex;
+  justify-content:center;
+  margin-top:32px;
+}
+.own-insta{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  background:linear-gradient(135deg,#833ab4,#e1306c,#fd1d1d,#fcb045);
+  color:#fff;
+  padding:16px 28px;
+  border-radius:16px;
+  font-weight:900;
+  font-size:17px;
+  letter-spacing:.4px;
+  box-shadow:0 12px 30px #e1306c55;
+  transition:.2s;
+}
+.own-insta:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 16px 40px #e1306c88;
+}
+.own-insta svg{
+  width:30px;
+  height:30px;
+  flex:none;
+}
+.own-insta small{
+  display:block;
+  font-weight:600;
+  font-size:11px;
+  letter-spacing:.5px;
+  opacity:.9;
+}
+
+/* Diğer iletişim linkleri */
+.contact-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:18px;
+  margin-top:26px;
+}
+.contact-link{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:14px 22px;
+  border-radius:14px;
+  transition:.2s;
+  color:var(--cream);
+  font-weight:bold;
+  font-size:15px;
+}
+.contact-link:hover{
+  border-color:var(--red);
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px #0008;
+}
+.contact-link svg{width:26px;height:26px;flex:none}
+.contact-link .ig-logo{color:#e1306c}
+.contact-link .gm-logo{color:#ea4335}
+.contact-link small{
+  display:block;
+  font-weight:400;
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* FOOTER */
+footer{
+  padding:35px 7%;
+  background:#0d0908;
+  color:#a8998f;
+  text-align:center;
+  border-top:1px solid var(--border);
+}
+.footer-logo img{
+  width:115px;
+  height:70px;
+  object-fit:contain;
+}
+footer p{font-size:13px}
+footer small{color:#7a6a61}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%) translateY(20px);
+  background:#3a1714;
+  color:#ffb4b4;
+  border:1px solid #7a2a24;
+  padding:14px 20px;
+  border-radius:12px;
+  font-size:14px;
+  font-weight:bold;
+  box-shadow:0 10px 30px #000a;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:999;
+  max-width:90vw;
+  text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* MOBILE */
+@media(max-width:850px){
+  .navbar{padding:0 4%}
+  .nav-links{gap:17px}
+  .nav-links button{font-size:13px}
+  .nav-links .menu-link{padding:13px 16px}
+  .hero{padding:55px 6%;gap:25px}
+  .hero-image img{height:300px}
+  .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .section{padding:60px 6%}
+  .about-section{gap:30px}
+}
+@media(max-width:600px){
+  .navbar{height:auto;min-height:75px;padding:8px 4%;gap:8px}
+  .brand img{width:80px;height:55px}
+  .nav-links{gap:10px}
+  .nav-links button{font-size:11px;white-space:nowrap}
+  .nav-links .menu-link{padding:11px 10px;font-size:12px}
+  .cart-button{padding:10px;font-size:13px}
+  .hero{
+    grid-template-columns:1fr;
+    padding:45px 6%;
+    gap:35px;
+  }
+  .hero h1{font-size:52px}
+  .hero p{font-size:15px}
+  .hero-image img{height:250px;transform:none}
+  .hero-sticker{width:80px;height:80px;font-size:11px;left:-8px}
+  .section{padding:48px 5%}
+  .section-heading h2{font-size:30px}
+  .menu-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .product-image{height:130px}
+  .product-info{padding:12px}
+  .product h3{font-size:14px}
+  .product p{font-size:11px;min-height:55px}
+  .price{font-size:15px}
+  .add-btn{padding:9px 10px;font-size:12px}
+  .about-section{grid-template-columns:1fr;gap:25px}
+  .about-section img{max-height:220px}
+  .features{padding:25px 4%;gap:8px}
+  .feature h3{font-size:12px}
+  .feature p{font-size:10px}
+  .feature .emoji{font-size:24px}
+  .order-layout{grid-template-columns:1fr}
+  .panel{padding:18px}
+  .contact-section h2{font-size:29px}
+  .own-insta{padding:14px 20px;font-size:15px}
+  .own-insta svg{width:26px;height:26px}
+  .contact-link{padding:12px 16px;font-size:13px}
+}
+@media(max-width:380px){
+  .nav-links{gap:7px}
+  .nav-links button{font-size:10px}
+  .brand img{width:68px}
+  .cart-button{font-size:11px;padding:9px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <a href="javascript:void(0)" class="brand" onclick="showTab('anasayfa')">
+    <img src="dilimo_nobg.png" alt="Dilimo Pizza">
+  </a>
+
+  <nav class="nav-links">
+    <button type="button" onclick="showTab('anasayfa')">Ana sayfa</button>
+    <button type="button" onclick="showTab('hakkimizda')">Hakkımızda</button>
+    <button type="button" onclick="showTab('menu')" class="menu-link">🍕 MENÜ</button>
+    <button type="button" onclick="showTab('iletisim')">İletişim</button>
+  </nav>
+
+  <button class="cart-button" onclick="goCart()">
+    🛒 <span id="cartCount">0</span>
+  </button>
+</header>
+
+<main>
+
+<!-- ANA SAYFA -->
+<section class="tab-page active" id="page-anasayfa">
+  <div class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">🍕 GÜZEL BİR LEZZET YOLCULUĞU</span>
+      <span class="hero-tag">SADECE GAZIANTEP</span>
+      <h1>Mutluluk<br>bir <span>dilim</span> uzakta.</h1>
+      <p>
+        Bol malzeme, uzayan peynir ve sıcacık pizza keyfi.
+        Dilimo ile her dilimde mutluluğu keşfet!
+      </p>
+      <div class="hero-actions">
+        <button class="primary-btn" onclick="showTab('menu')">🍕 Menüyü keşfet</button>
+        <button class="secondary-btn" onclick="goCart()">Sepetim 🛒</button>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1100&q=90"
+        alt="İştah açıcı pizza">
+      <div class="hero-sticker">HER DİLİMDE<br>MUTLULUK ❤️</div>
+    </div>
+  </div>
+</section>
+
+<!-- HAKKIMIZDA -->
+<section class="tab-page" id="page-hakkimizda">
+  <div class="section about-section">
+    <div class="about-img-wrap">
+      <img src="dilimo_nobg.png" alt="Dilimo Pizza">
+    </div>
+
+    <div>
+      <span class="about-label">BİZ KİMİZ?</span>
+      <h2>Merhaba, biz Dilimo!</h2>
+      <p>
+        Gaziantep'te yeni kurulan bir girişimiz. Bu girişime bir pizza alarak
+        destek ver.
+      </p>
+      <p><strong>Bugün bir başlangıç, yarın büyük bir hikâye. ❤️</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- MENÜ (menü + sipariş) -->
+<section class="tab-page" id="page-menu">
+
+  <div class="section">
+    <div class="section-heading">
+      <span class="eyebrow">DILIMO LEZZETLERİ</span>
+      <h2>Hangisi senin favorin? 🍕</h2>
+      <p>Menümüzden seç, sepetine ekle.</p>
+    </div>
+    <div class="menu-grid" id="products"></div>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="emoji">🍕</div>
+      <h3>Lezzetli Pizzalar</h3>
+      <p>Her dilimde keyif.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">🔥</div>
+      <h3>Sıcacık Lezzet</h3>
+      <p>Özenle hazırlanan pizzalar.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">🛵</div>
+      <h3>Paket Servis</h3>
+      <p>Kapına kadar lezzet.</p>
+    </div>
+  </div>
+
+  <div class="section" id="siparis">
+    <div class="section-heading">
+      <span class="eyebrow">SİPARİŞİNİ OLUŞTUR</span>
+      <h2>Lezzet kapına gelsin!</h2>
+      <p>Sepetini kontrol et, teslimat bilgilerini doldur.</p>
+    </div>
+
+    <div class="order-layout">
+      <div class="panel">
+        <h3>🛒 Sepetim</h3>
+        <div id="cartItems">
+          <div class="empty-cart">Sepetin henüz boş.</div>
+        </div>
+        <div class="total">
+          <span>Toplam</span>
+          <span id="total">0 TL</span>
+        </div>
+        <p class="notice">Teslimat ücreti varsa sipariş onayında bildirilecektir.</p>
+      </div>
+
+      <div class="panel">
+        <h3>📍 Teslimat bilgileri</h3>
+        <form id="orderForm">
+          <label>Adın soyadın</label>
+          <input name="name" required maxlength="80" placeholder="Adınız Soyadınız">
+
+          <label>Telefon numaran</label>
+          <input name="phone" required type="tel" maxlength="20" placeholder="05XX XXX XX XX">
+
+          <label>İlçe / Mahalle</label>
+          <input name="district" required maxlength="100" placeholder="Örn. Şahinbey / ...">
+
+          <label>Açık adres</label>
+          <textarea name="address" required maxlength="500" placeholder="Cadde, sokak, bina ve daire numarası..."></textarea>
+
+          <label>Sipariş notu</label>
+          <textarea name="note" maxlength="300" placeholder="Varsa sipariş notunuz..."></textarea>
+
+          <label>Ödeme yöntemi</label>
+          <div class="payment">
+            <label class="pay-option">
+              <input type="radio" name="payment" value="Kapıda nakit" checked> 💵 Kapıda nakit
+            </label>
+            <div class="pay-option disabled" id="cardOption" title="Şu anlık kart kullanamıyoruz">
+              💳 Kapıda kart
+            </div>
+          </div>
+
+          <button class="primary-btn submit-btn" type="submit">
+            Siparişi gönder 🍕
+          </button>
+
+          <div id="message"></div>
+          <p class="notice">
+            Sipariş gönderimi henüz demo modundadır. Gerçek sipariş alabilmek
+            için güvenli sunucu bağlantısı gereklidir.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- İLETİŞİM -->
+<section class="tab-page" id="page-iletisim">
+  <div class="section contact-section">
+    <span class="eyebrow">BİZİMLE TANIŞ</span>
+    <h2>Bir dilim mutluluğa ne dersin?</h2>
+    <p>Dilimo'nun lezzet yolculuğu burada başlıyor. ❤️</p>
+    <p>📍 Gaziantep</p>
+
+    <!-- Bizim insta (üst orta) -->
+    <div class="own-insta-wrap">
+      <a class="own-insta" href="https://www.instagram.com/dilimo_pizza/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        <span>Dilimo Pizza<small>@dilimo_pizza — Instagram</small></span>
+      </a>
+    </div>
+
+    <!-- Kurucu + Gmail -->
+    <div class="contact-links">
+      <a class="contact-link" href="https://www.instagram.com/burak_msz/" target="_blank" rel="noopener">
+        <svg class="ig-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        <span>Kurucu<small>Instagram</small></span>
+      </a>
+
+      <a class="contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=burakbilec123@gmail.com" target="_blank" rel="noopener">
+        <svg class="gm-logo" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+        </svg>
+        <span>Bize Ulaşın<small>Gmail</small></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="dilimo_nobg.png" alt="Dilimo">
+  </div>
+  <p>Her dilimde mutluluk. 🍕</p>
+  <small>© <span id="year"></span> Dilimo Pizza. Tüm hakları saklıdır.</small>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function showTab(name){
+  document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
+  const page = document.getElementById('page-' + name);
+  if(page) page.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function goCart(){
+  showTab('menu');
+  setTimeout(()=>{
+    document.getElementById('siparis').scrollIntoView({behavior:'smooth'});
+  }, 60);
+}
+
+/* ============================================
+   WHATSAPP NUMARASI
+   Ülke kodlu, başında + veya 0 OLMADAN yaz.
+   Örnek: 905518902507
+   ============================================ */
+const WHATSAPP_NUMBER = "905518902507";
+
+const menu = [
+  {id:1,name:"Klasik Pizza",price:250,desc:"Mozzarella, sucuk, mantar ve özel sos.",
+    image:"https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=700&q=85"},
+  {id:2,name:"Dört Peynir",price:280,desc:"Dört farklı peynirin enfes buluşması.",
+    image:"https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=700&q=85"},
+  {id:3,name:"Karışık Pizza",price:290,desc:"Sucuk, sosis, zeytin, mantar ve bol peynir.",
+    image:"https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=85"},
+  {id:4,name:"Margarita",price:220,desc:"Domates sosu, mozzarella ve fesleğen.",
+    image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=85"},
+  {id:5,name:"Sucuksever",price:270,desc:"Bol sucuk, mozzarella ve özel domates sosu.",
+    image:"https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=700&q=85"},
+  {id:6,name:"Dilimo Special",price:320,desc:"Dilimo'nun özel pizza lezzeti.",
+    image:"https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=700&q=85"}
+];
+
+let cart = [];
+
+const money = value =>
+  new Intl.NumberFormat("tr-TR").format(value) + " TL";
+
+function renderProducts(){
+  document.getElementById("products").innerHTML = menu.map(item => `
+    <article class="product">
+      <img class="product-image" src="${item.image}" alt="${item.name}" loading="lazy">
+      <div class="product-info">
+        <h3>${item.name}</h3>
+        <p>${item.desc}</p>
+        <div class="product-bottom">
+          <span class="price">${money(item.price)}</span>
+          <button class="add-btn" onclick="addToCart(${item.id})">+ Ekle</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function addToCart(id){
+  const item = menu.find(p => p.id === id);
+  const existing = cart.find(p => p.id === id);
+  if(existing) existing.qty++;
+  else cart.push({...item,qty:1});
+  renderCart();
+}
+
+function changeQty(id,amount){
+  const item = cart.find(p => p.id === id);
+  if(!item) return;
+  item.qty += amount;
+  if(item.qty <= 0) cart = cart.filter(p => p.id !== id);
+  renderCart();
+}
+
+function renderCart(){
+  const count = cart.reduce((sum,p)=>sum+p.qty,0);
+  const total = cart.reduce((sum,p)=>sum+p.price*p.qty,0);
+
+  document.getElementById("cartCount").textContent = count;
+  document.getElementById("total").textContent = money(total);
+
+  document.getElementById("cartItems").innerHTML = cart.length
+    ? cart.map(p => `
+      <div class="cart-row">
+        <div>
+          <strong>${p.name}</strong><br>
+          <small>${money(p.price)}</small>
+        </div>
+        <div class="qty">
+          <button type="button" onclick="changeQty(${p.id},-1)">−</button>
+          <span>${p.qty}</span>
+          <button type="button" onclick="changeQty(${p.id},1)">+</button>
+        </div>
+        <strong>${money(p.price*p.qty)}</strong>
+      </div>
+    `).join("")
+    : '<div class="empty-cart">Sepetin henüz boş. 🍕</div>';
+}
+
+function showMessage(text,type="error"){
+  const box = document.getElementById("message");
+  box.style.display = "block";
+  box.style.background = type === "success" ? "#123a22" : "#3a1515";
+  box.style.color = type === "success" ? "#8ef0b0" : "#ffb4b4";
+  box.textContent = text;
+}
+
+let toastTimer = null;
+function showToast(text){
+  const toast = document.getElementById("toast");
+  toast.textContent = text;
+  toast.classList.add("show");
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"), 3500);
+}
+
+document.getElementById("cardOption").addEventListener("click", ()=>{
+  showToast("Şu anlık kart kullanamıyoruz. Kapıda nakit ödeyin. 🙏");
+});
+
+/* Siparişi WhatsApp'a gönder */
+document.getElementById("orderForm").addEventListener("submit", event=>{
+  event.preventDefault();
+
+  if(!cart.length){
+    showMessage("Önce sepetine pizza eklemelisin.");
+    return;
+  }
+
+  const form = new FormData(event.target);
+
+  const total = cart.reduce((sum,p)=>sum+p.price*p.qty,0);
+
+  // Sepet satırlarını oluştur
+  const itemLines = cart.map(p =>
+    `• ${p.name} x${p.qty} = ${money(p.price*p.qty)}`
+  ).join("\n");
+
+  // WhatsApp mesajı
+  const message =
+`🍕 *DILIMO PIZZA - YENİ SİPARİŞ*
+
+*Sepet:*
+${itemLines}
+
+*Toplam:* ${money(total)}
+
+*Müşteri Bilgileri:*
+👤 ${form.get("name")}
+📞 ${form.get("phone")}
+📍 ${form.get("district")}
+🏠 ${form.get("address")}
+💳 Ödeme: ${form.get("payment")}
+${form.get("note") ? "📝 Not: " + form.get("note") : ""}
+
+Teşekkürler! ❤️`;
+
+  // URL'i oluştur ve WhatsApp'ı aç
+  const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+
+  showMessage("WhatsApp açılıyor... Mesajı göndermeyi unutma! 🍕", "success");
+
+  // Sepeti temizle
+  cart = [];
+  renderCart();
+  event.target.reset();
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
