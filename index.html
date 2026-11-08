@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#14100f">
 <title>Dilimo Pizza | Gaziantep'te Her Dilimde Mutluluk</title>
 <meta name="description" content="Gaziantep'in yeni gözdesi Dilimo Pizza. Bol malzeme, uzayan peynir ve sıcacık pizza keyfi. Ücretsiz teslimat ile kapınıza kadar lezzet!">
@@ -43,24 +43,29 @@
   --cream:#f3e7dd;
   --muted:#b3a096;
   --gold:#f5c542;
+  --neon-red:#ff2d2d;
+  --neon-glow:0 0 8px #ff2d2d, 0 0 18px #ff2d2d88;
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   margin:0;
   background:var(--bg);
   color:var(--cream);
   font-family:Arial,Helvetica,sans-serif;
-  scroll-behavior:smooth;
   overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
 }
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 a{text-decoration:none;color:inherit}
+img{max-width:100%;height:auto;display:block}
 
 /* NAVBAR */
 .navbar{
-  height:86px;
-  padding:0 7%;
+  min-height:86px;
+  padding:0 5%;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -70,10 +75,12 @@ a{text-decoration:none;color:inherit}
   border-bottom:1px solid var(--border);
   backdrop-filter:blur(14px);
   background:rgba(29,22,20,.92);
+  gap:10px;
+  flex-wrap:wrap;
 }
 .brand img{
-  width:125px;
-  height:72px;
+  width:115px;
+  height:66px;
   object-fit:contain;
   display:block;
   transition:.3s;
@@ -82,22 +89,25 @@ a{text-decoration:none;color:inherit}
 .nav-links{
   display:flex;
   align-items:center;
-  gap:38px;
+  gap:clamp(14px,3vw,38px);
+  flex-wrap:wrap;
+  justify-content:center;
 }
 .nav-links button{
   background:transparent;
   border:0;
   color:var(--cream);
-  font-size:15px;
+  font-size:clamp(12px,1.5vw,15px);
   font-weight:750;
-  padding:0;
+  padding:4px 0;
   transition:.2s;
   position:relative;
+  white-space:nowrap;
 }
 .nav-links button::after{
   content:"";
   position:absolute;
-  bottom:-6px;left:50%;
+  bottom:-4px;left:50%;
   width:0;height:2px;
   background:var(--red);
   transition:.3s;
@@ -108,9 +118,9 @@ a{text-decoration:none;color:inherit}
 .nav-links .menu-link{
   color:#fff !important;
   background:var(--red);
-  padding:15px 27px;
+  padding:12px clamp(14px,2.5vw,27px);
   border-radius:12px;
-  font-size:17px;
+  font-size:clamp(13px,1.8vw,17px);
   box-shadow:0 0 8px #ff263c,0 0 18px #ff263c,0 0 35px #ff263c77;
   animation:menuGlow 1.6s infinite alternate;
 }
@@ -123,11 +133,12 @@ a{text-decoration:none;color:inherit}
   border:0;
   background:#f3e7dd;
   color:#14100f;
-  padding:13px 17px;
+  padding:10px clamp(12px,2vw,17px);
   border-radius:12px;
   font-weight:bold;
-  font-size:16px;
+  font-size:clamp(13px,1.6vw,16px);
   transition:.2s;
+  white-space:nowrap;
 }
 .cart-button:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
 
@@ -142,11 +153,11 @@ a{text-decoration:none;color:inherit}
 /* HERO */
 .hero{
   min-height:calc(100vh - 86px);
-  padding:55px 8% 45px;
+  padding:clamp(30px,6vw,55px) clamp(5%,8%,8%) clamp(30px,5vw,45px);
   display:grid;
   grid-template-columns:1.05fr 1fr;
   align-items:center;
-  gap:45px;
+  gap:clamp(25px,5vw,45px);
   background:
     radial-gradient(ellipse at 80% 40%,#3d1b16 0,transparent 55%),
     linear-gradient(120deg,#14100f,#1c1310);
@@ -156,7 +167,7 @@ a{text-decoration:none;color:inherit}
 .hero::before{
   content:"🍕";
   position:absolute;
-  font-size:280px;
+  font-size:clamp(140px,20vw,280px);
   opacity:.04;
   right:-40px;
   bottom:-60px;
@@ -173,41 +184,42 @@ a{text-decoration:none;color:inherit}
   display:inline-block;
   color:#ff8a8a;
   background:#3a1714;
-  padding:9px 15px;
+  padding:8px 14px;
   border-radius:30px;
   font-weight:bold;
-  font-size:12px;
-  letter-spacing:1.5px;
+  font-size:clamp(10px,1.2vw,12px);
+  letter-spacing:1.2px;
 }
 .hero h1{
-  font-size:clamp(45px,6vw,76px);
-  line-height:1.03;
-  letter-spacing:-3px;
-  margin:22px 0 10px;
+  font-size:clamp(38px,6vw,76px);
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin:clamp(16px,3vw,22px) 0 10px;
 }
 .hero h1 span{color:var(--red)}
 
-/* ===== HERO KUTUCUK ROTATOR (ANA EKRANDA) ===== */
+/* HERO KUTUCUK ROTATOR */
 .hero-rotator{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:clamp(8px,1.5vw,14px);
   margin:6px 0 18px;
-  font-size:clamp(24px,3.4vw,40px);
+  font-size:clamp(20px,3.2vw,40px);
   font-weight:900;
-  letter-spacing:-1.5px;
-  min-height:56px;
+  letter-spacing:-1.2px;
+  min-height:clamp(44px,6vw,56px);
   flex-wrap:wrap;
 }
 .hero-rotator .static-text{
   color:var(--cream);
   opacity:.9;
+  white-space:nowrap;
 }
 .rotator{
   position:relative;
   display:inline-block;
-  height:56px;
-  min-width:clamp(220px,34vw,420px);
+  height:clamp(44px,6vw,56px);
+  min-width:clamp(160px,30vw,420px);
   overflow:hidden;
   vertical-align:middle;
 }
@@ -215,7 +227,7 @@ a{text-decoration:none;color:inherit}
   position:absolute;
   top:0;left:0;
   width:100%;
-  height:56px;
+  height:100%;
   display:flex;
   align-items:center;
   color:var(--red);
@@ -241,13 +253,13 @@ a{text-decoration:none;color:inherit}
 .hero p{
   color:var(--muted);
   line-height:1.8;
-  font-size:17px;
+  font-size:clamp(14px,1.6vw,17px);
   max-width:440px;
 }
 .hero-actions{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:clamp(10px,2vw,15px);
   margin-top:26px;
   flex-wrap:wrap;
 }
@@ -255,10 +267,10 @@ a{text-decoration:none;color:inherit}
   background:var(--red);
   color:white;
   border:0;
-  padding:16px 25px;
+  padding:14px clamp(18px,2.5vw,25px);
   border-radius:12px;
   font-weight:bold;
-  font-size:16px;
+  font-size:clamp(14px,1.6vw,16px);
   box-shadow:0 7px 20px #e5232d55;
   transition:.2s;
 }
@@ -271,16 +283,17 @@ a{text-decoration:none;color:inherit}
   border:2px solid var(--border);
   color:var(--cream);
   background:transparent;
-  padding:14px 22px;
+  padding:12px clamp(16px,2.2vw,22px);
   border-radius:12px;
   font-weight:bold;
+  font-size:clamp(14px,1.6vw,16px);
   transition:.2s;
 }
 .secondary-btn:hover{border-color:var(--red);transform:translateY(-2px)}
 .hero-image{position:relative;z-index:1}
 .hero-image img{
   width:100%;
-  height:390px;
+  height:clamp(220px,35vw,390px);
   object-fit:cover;
   border-radius:28px;
   box-shadow:0 25px 55px #0008;
@@ -295,31 +308,32 @@ a{text-decoration:none;color:inherit}
   background:var(--red);
   color:white;
   border-radius:50%;
-  width:105px;
-  height:105px;
+  width:clamp(70px,10vw,105px);
+  height:clamp(70px,10vw,105px);
   display:grid;
   place-items:center;
   text-align:center;
-  font-size:14px;
+  font-size:clamp(10px,1.4vw,14px);
   font-weight:900;
   line-height:1.3;
   transform:rotate(-12deg);
   box-shadow:0 8px 20px #e5232d55;
   animation:stickerPulse 2.4s infinite;
+  padding:6px;
 }
 @keyframes stickerPulse{
   0%,100%{transform:rotate(-12deg) scale(1)}
   50%{transform:rotate(-12deg) scale(1.08)}
 }
 
-/* ===== AKAN YAZI BANDI ===== */
+/* AKAN YAZI BANDI */
 .marquee-band{
   background:linear-gradient(90deg,#bd1721,#e5232d,#ff4d4d,#e5232d,#bd1721);
   background-size:300% 100%;
   animation:bandMove 4s linear infinite;
   overflow:hidden;
   white-space:nowrap;
-  padding:15px 0;
+  padding:14px 0;
   border-top:2px solid #ff6b6b;
   border-bottom:2px solid #ff6b6b;
   position:relative;
@@ -335,12 +349,12 @@ a{text-decoration:none;color:inherit}
 }
 .marquee-track span{
   display:inline-block;
-  font-size:17px;
+  font-size:clamp(13px,1.6vw,17px);
   font-weight:900;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
   color:#fff;
   text-shadow:0 0 10px #fff8,0 0 20px #ff0000;
-  padding:0 40px;
+  padding:0 clamp(18px,3vw,40px);
 }
 .marquee-track span:nth-child(odd){color:#ffe4e4}
 @keyframes marqueeScroll{
@@ -350,16 +364,16 @@ a{text-decoration:none;color:inherit}
 .marquee-band:hover .marquee-track{animation-play-state:paused}
 
 /* COMMON */
-.section{padding:75px 8%}
+.section{padding:clamp(45px,6vw,75px) clamp(5%,8%,8%)}
 .section-heading{text-align:center;margin-bottom:35px}
 .section-heading .eyebrow{
   color:var(--red);
-  font-size:12px;
+  font-size:clamp(10px,1.2vw,12px);
   font-weight:900;
   letter-spacing:2px;
 }
 .section-heading h2{
-  font-size:clamp(30px,4vw,43px);
+  font-size:clamp(26px,4vw,43px);
   margin:10px 0;
   letter-spacing:-1px;
 }
@@ -367,13 +381,14 @@ a{text-decoration:none;color:inherit}
   color:var(--muted);
   margin:0;
   line-height:1.6;
+  font-size:clamp(13px,1.4vw,16px);
 }
 
 /* MENU */
 .menu-grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:23px;
+  gap:clamp(12px,2vw,23px);
 }
 .product{
   border:1px solid var(--border);
@@ -392,56 +407,60 @@ a{text-decoration:none;color:inherit}
 }
 .product-image{
   width:100%;
-  height:210px;
+  height:clamp(120px,18vw,210px);
   object-fit:cover;
   display:block;
   transition:.4s;
 }
 .product:hover .product-image{transform:scale(1.05)}
 .product-info{
-  padding:19px;
+  padding:clamp(12px,1.8vw,19px);
   display:flex;
   flex-direction:column;
   flex:1;
 }
-.product h3{font-size:19px;margin:0 0 8px}
+.product h3{font-size:clamp(14px,1.6vw,19px);margin:0 0 8px}
 .product p{
   color:var(--muted);
-  font-size:13px;
+  font-size:clamp(11px,1.2vw,13px);
   line-height:1.6;
-  margin:0 0 18px;
-  min-height:42px;
+  margin:0 0 14px;
+  min-height:38px;
 }
 .product-bottom{
   display:flex;
   align-items:center;
   justify-content:space-between;
   margin-top:auto;
+  gap:8px;
+  flex-wrap:wrap;
 }
-.price{font-size:20px;font-weight:900}
+.price{font-size:clamp(15px,1.8vw,20px);font-weight:900}
 .add-btn{
   border:0;
   background:var(--red);
   color:white;
   border-radius:10px;
-  padding:11px 16px;
+  padding:9px clamp(10px,1.5vw,16px);
   font-weight:bold;
+  font-size:clamp(11px,1.3vw,14px);
   transition:.2s;
+  white-space:nowrap;
 }
 .add-btn:hover{background:var(--red-dark);transform:scale(1.06)}
 
-/* ABOUT */
+/* ABOUT - YENİ TASARIM */
 .about-section{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:55px;
+  grid-template-columns:1fr 1.2fr;
+  gap:clamp(30px,5vw,55px);
   align-items:center;
   min-height:calc(100vh - 86px);
 }
 .about-img-wrap{
   background:#0f0b0a;
   border-radius:22px;
-  padding:20px;
+  padding:clamp(12px,2vw,20px);
   display:grid;
   place-items:center;
   border:1px solid var(--border);
@@ -450,50 +469,86 @@ a{text-decoration:none;color:inherit}
 .about-img-wrap:hover{border-color:var(--red);box-shadow:0 0 30px #e5232d22}
 .about-section img{
   width:100%;
-  max-height:330px;
+  max-height:clamp(180px,30vw,330px);
   object-fit:contain;
   display:block;
 }
-.about-section h2{
-  font-size:clamp(30px,4vw,42px);
-  margin:10px 0 18px;
+.about-content h2{
+  font-size:clamp(28px,4vw,42px);
+  margin:8px 0 18px;
+  letter-spacing:-1px;
+  line-height:1.15;
 }
-.about-section p{
-  color:var(--muted);
-  line-height:1.9;
-  font-size:15px;
-}
-.about-label{
+.about-content .about-label{
   color:var(--red);
   font-weight:900;
-  font-size:12px;
+  font-size:clamp(10px,1.2vw,12px);
   letter-spacing:2px;
+  display:inline-block;
+  margin-bottom:4px;
+}
+.about-content p{
+  color:var(--muted);
+  line-height:1.85;
+  font-size:clamp(13px,1.4vw,15px);
+  margin-bottom:14px;
+}
+.about-content p strong{color:var(--cream)}
+.about-content a{
+  color:#ff8a8a;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  font-weight:700;
+  transition:.2s;
+}
+.about-content a:hover{color:var(--red);text-shadow:0 0 8px #e5232d66}
+
+.about-highlight{
+  color:var(--neon-red);
+  font-weight:900;
+  font-size:clamp(15px,2vw,19px);
+  text-shadow:var(--neon-glow);
+  letter-spacing:.3px;
+  display:inline-block;
+  animation:neonPulse 2s ease-in-out infinite alternate;
+  line-height:1.5;
+}
+@keyframes neonPulse{
+  from{text-shadow:0 0 6px #ff2d2d, 0 0 12px #ff2d2d55;}
+  to{text-shadow:0 0 14px #ff2d2d, 0 0 28px #ff2d2d, 0 0 42px #ff2d2d66;}
+}
+
+.about-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+  margin:18px 0;
+  border:0;
 }
 
 /* FEATURES */
 .features{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  padding:35px 8%;
+  gap:clamp(6px,1.5vw,20px);
+  padding:clamp(22px,3vw,35px) clamp(5%,8%,8%);
   background:#0f0b0a;
   color:white;
   text-align:center;
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
 }
-.feature{padding:10px;transition:.3s}
+.feature{padding:6px;transition:.3s}
 .feature:hover{transform:translateY(-4px)}
-.feature .emoji{font-size:30px;transition:.3s;display:inline-block}
+.feature .emoji{font-size:clamp(22px,3vw,30px);transition:.3s;display:inline-block}
 .feature:hover .emoji{transform:scale(1.2) rotate(-8deg)}
-.feature h3{font-size:16px;margin:10px 0 5px}
-.feature p{color:#9a8a80;font-size:12px;margin:0}
+.feature h3{font-size:clamp(12px,1.5vw,16px);margin:10px 0 5px}
+.feature p{color:#9a8a80;font-size:clamp(10px,1.2vw,12px);margin:0;line-height:1.4}
 
 /* CART */
 .order-layout{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:25px;
+  gap:clamp(18px,3vw,25px);
   max-width:1100px;
   margin:auto;
 }
@@ -501,26 +556,28 @@ a{text-decoration:none;color:inherit}
   background:var(--card);
   border:1px solid var(--border);
   border-radius:18px;
-  padding:25px;
+  padding:clamp(16px,2.5vw,25px);
   transition:.3s;
 }
 .panel:hover{border-color:#4a342c}
-.panel h3{margin:0 0 20px;font-size:21px}
+.panel h3{margin:0 0 20px;font-size:clamp(17px,2vw,21px)}
 .empty-cart{
   text-align:center;
   color:var(--muted);
   padding:35px 0;
+  font-size:clamp(13px,1.4vw,15px);
 }
 .cart-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:10px;
   padding:13px 0;
   border-bottom:1px solid var(--border);
+  flex-wrap:wrap;
 }
-.cart-row strong{font-size:14px}
-.cart-row small{color:var(--muted)}
+.cart-row strong{font-size:clamp(12px,1.3vw,14px)}
+.cart-row small{color:var(--muted);font-size:clamp(10px,1.1vw,12px)}
 .qty{display:flex;align-items:center;gap:9px}
 .qty button{
   width:28px;height:28px;
@@ -529,18 +586,20 @@ a{text-decoration:none;color:inherit}
   color:var(--cream);
   font-weight:bold;
   transition:.2s;
+  font-size:15px;
+  line-height:1;
 }
 .qty button:hover{background:var(--red);color:#fff;transform:scale(1.1)}
 .total{
   display:flex;
   justify-content:space-between;
-  font-size:21px;
+  font-size:clamp(18px,2.2vw,21px);
   font-weight:900;
   margin-top:20px;
 }
 label{
   display:block;
-  font-size:13px;
+  font-size:clamp(11px,1.2vw,13px);
   font-weight:bold;
   margin:15px 0 7px;
 }
@@ -548,15 +607,16 @@ input,textarea{
   width:100%;
   border:1px solid var(--border);
   background:#171110;
-  padding:13px;
+  padding:clamp(10px,1.5vw,13px);
   border-radius:10px;
   outline:none;
   color:var(--cream);
   transition:.2s;
+  font-size:clamp(13px,1.4vw,15px);
 }
 input::placeholder,textarea::placeholder{color:#7d6c63}
 input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 2px #e5232d22}
-textarea{min-height:85px;resize:vertical}
+textarea{min-height:80px;resize:vertical}
 .payment{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -564,34 +624,35 @@ textarea{min-height:85px;resize:vertical}
 }
 .pay-option{
   border:1px solid var(--border);
-  padding:13px;
+  padding:clamp(10px,1.4vw,13px);
   border-radius:10px;
   margin:5px 0;
   cursor:pointer;
   display:flex;
   align-items:center;
   gap:8px;
-  font-size:14px;
+  font-size:clamp(12px,1.3vw,14px);
   background:#171110;
   user-select:none;
   transition:.2s;
 }
 .pay-option:hover{border-color:var(--red)}
-.pay-option.disabled{opacity:.55}
-.pay-option.disabled:hover{border-color:var(--red)}
-.pay-option input{width:auto;margin:0}
-.submit-btn{width:100%;margin-top:20px;padding:16px}
+.pay-option.disabled{opacity:.55;cursor:not-allowed}
+.pay-option.disabled:hover{border-color:var(--border)}
+.pay-option input{width:auto;margin:0;accent-color:var(--red)}
+.submit-btn{width:100%;margin-top:20px;padding:15px}
 .notice{
   color:#8a776d;
-  font-size:11px;
+  font-size:clamp(9px,1vw,11px);
   line-height:1.6;
+  margin-top:10px;
 }
 #message{
   display:none;
   padding:14px;
   margin-top:15px;
   border-radius:10px;
-  font-size:13px;
+  font-size:clamp(12px,1.3vw,13px);
   line-height:1.6;
   animation:fade .3s ease;
 }
@@ -603,14 +664,14 @@ textarea{min-height:85px;resize:vertical}
   display:flex;
   flex-direction:column;
   justify-content:center;
+  padding:clamp(40px,6vw,75px) clamp(5%,8%,8%);
 }
 .contact-section h2{
-  font-size:36px;
+  font-size:clamp(26px,4vw,36px);
   margin:10px 0;
 }
-.contact-section p{color:var(--muted);line-height:1.7}
+.contact-section p{color:var(--muted);line-height:1.7;font-size:clamp(13px,1.4vw,16px)}
 
-/* Bizim insta - üst orta */
 .own-insta-wrap{
   display:flex;
   justify-content:center;
@@ -619,87 +680,93 @@ textarea{min-height:85px;resize:vertical}
 .own-insta{
   display:inline-flex;
   align-items:center;
-  gap:14px;
+  gap:12px;
   background:linear-gradient(135deg,#833ab4,#e1306c,#fd1d1d,#fcb045);
   color:#fff;
-  padding:16px 28px;
+  padding:clamp(12px,1.8vw,16px) clamp(20px,3vw,28px);
   border-radius:16px;
   font-weight:900;
-  font-size:17px;
+  font-size:clamp(14px,1.8vw,17px);
   letter-spacing:.4px;
   box-shadow:0 12px 30px #e1306c55;
   transition:.2s;
+  flex-wrap:wrap;
+  justify-content:center;
+  text-align:left;
 }
 .own-insta:hover{
   transform:translateY(-3px) scale(1.02);
   box-shadow:0 16px 40px #e1306c88;
 }
 .own-insta svg{
-  width:30px;
-  height:30px;
+  width:clamp(24px,3vw,30px);
+  height:clamp(24px,3vw,30px);
   flex:none;
 }
 .own-insta small{
   display:block;
   font-weight:600;
-  font-size:11px;
+  font-size:clamp(9px,1.1vw,11px);
   letter-spacing:.5px;
   opacity:.9;
 }
 
-/* Diğer iletişim linkleri */
 .contact-links{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
-  gap:18px;
+  gap:clamp(12px,2vw,18px);
   margin-top:26px;
 }
 .contact-link{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   background:var(--card);
   border:1px solid var(--border);
-  padding:14px 22px;
+  padding:clamp(10px,1.5vw,14px) clamp(14px,2vw,22px);
   border-radius:14px;
   transition:.2s;
   color:var(--cream);
   font-weight:bold;
-  font-size:15px;
+  font-size:clamp(12px,1.4vw,15px);
+  flex-wrap:wrap;
+  justify-content:center;
 }
 .contact-link:hover{
   border-color:var(--red);
   transform:translateY(-2px);
   box-shadow:0 10px 25px #0008;
 }
-.contact-link svg{width:26px;height:26px;flex:none}
+.contact-link svg{width:clamp(22px,2.8vw,26px);height:clamp(22px,2.8vw,26px);flex:none}
 .contact-link .ig-logo{color:#e1306c}
 .contact-link .gm-logo{color:#ea4335}
 .contact-link small{
   display:block;
   font-weight:400;
   color:var(--muted);
-  font-size:11px;
+  font-size:clamp(9px,1.1vw,11px);
 }
 
 /* FOOTER */
 footer{
-  padding:35px 7%;
+  padding:clamp(25px,4vw,35px) 7%;
   background:#0d0908;
   color:#a8998f;
   text-align:center;
   border-top:1px solid var(--border);
 }
 .footer-logo img{
-  width:115px;
-  height:70px;
+  width:clamp(90px,12vw,115px);
+  height:auto;
+  max-height:70px;
   object-fit:contain;
   transition:.3s;
+  margin:0 auto;
 }
 .footer-logo img:hover{transform:scale(1.06)}
-footer p{font-size:13px}
-footer small{color:#7a6a61}
+footer p{font-size:clamp(11px,1.3vw,13px);margin:8px 0}
+footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
 
 /* TOAST */
 .toast{
@@ -710,9 +777,9 @@ footer small{color:#7a6a61}
   background:#3a1714;
   color:#ffb4b4;
   border:1px solid #7a2a24;
-  padding:14px 20px;
+  padding:12px 20px;
   border-radius:12px;
-  font-size:14px;
+  font-size:clamp(12px,1.4vw,14px);
   font-weight:bold;
   box-shadow:0 10px 30px #000a;
   opacity:0;
@@ -724,68 +791,86 @@ footer small{color:#7a6a61}
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* MOBILE */
-@media(max-width:850px){
-  .navbar{padding:0 4%}
-  .nav-links{gap:17px}
-  .nav-links button{font-size:13px}
-  .nav-links .menu-link{padding:13px 16px}
-  .hero{padding:45px 6%;gap:25px}
-  .hero-image img{height:300px}
-  .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .section{padding:60px 6%}
-  .about-section{gap:30px}
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px){
+  .hero{grid-template-columns:1fr 1fr}
+  .about-section{grid-template-columns:1fr 1.1fr}
 }
-@media(max-width:600px){
-  .navbar{height:auto;min-height:75px;padding:8px 4%;gap:8px}
-  .brand img{width:80px;height:55px}
-  .nav-links{gap:10px}
-  .nav-links button{font-size:11px;white-space:nowrap}
-  .nav-links .menu-link{padding:11px 10px;font-size:12px}
-  .cart-button{padding:10px;font-size:13px}
+
+@media (max-width: 850px){
+  .navbar{padding:6px 4%}
+  .hero{padding:35px 6%;gap:25px}
+  .hero-image img{height:clamp(200px,30vw,300px)}
+  .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .section{padding:50px 6%}
+  .about-section{grid-template-columns:1fr;gap:30px;min-height:auto;padding:50px 6%}
+  .about-img-wrap{max-width:400px;margin:0 auto;width:100%}
+  .about-content{text-align:center}
+  .about-content .about-label{display:block}
+  .order-layout{grid-template-columns:1fr}
+  .payment{grid-template-columns:1fr}
+}
+
+@media (max-width: 600px){
+  .navbar{min-height:auto;padding:8px 3%;gap:6px;justify-content:center}
+  .brand img{width:70px;height:48px}
+  .nav-links{gap:8px;order:3;width:100%;justify-content:center;padding-bottom:4px}
+  .nav-links button{font-size:11px}
+  .nav-links .menu-link{padding:9px 12px;font-size:12px}
+  .cart-button{padding:8px 10px;font-size:12px;order:2}
+  .brand{order:1}
   .hero{
     grid-template-columns:1fr;
-    padding:40px 6%;
-    gap:30px;
+    padding:30px 5%;
+    gap:25px;
+    min-height:auto;
   }
-  .hero h1{font-size:50px;letter-spacing:-2px}
-  .hero-rotator{font-size:22px;min-height:44px;gap:8px}
-  .rotator{height:44px;min-width:170px}
-  .rotator span{height:44px;font-size:22px}
-  .hero p{font-size:15px}
-  .hero-image img{height:250px;transform:none}
-  .hero-sticker{width:80px;height:80px;font-size:11px;left:-8px}
-  .section{padding:48px 5%}
-  .section-heading h2{font-size:30px}
-  .menu-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .product-image{height:130px}
-  .product-info{padding:12px}
-  .product h3{font-size:14px}
-  .product p{font-size:11px;min-height:55px}
-  .price{font-size:15px}
-  .add-btn{padding:9px 10px;font-size:12px}
-  .about-section{grid-template-columns:1fr;gap:25px}
-  .about-section img{max-height:220px}
-  .features{padding:25px 4%;gap:8px}
-  .feature h3{font-size:12px}
-  .feature p{font-size:10px}
-  .feature .emoji{font-size:24px}
-  .order-layout{grid-template-columns:1fr}
-  .panel{padding:18px}
-  .contact-section h2{font-size:29px}
-  .own-insta{padding:14px 20px;font-size:15px}
-  .own-insta svg{width:26px;height:26px}
-  .contact-link{padding:12px 16px;font-size:13px}
-  .marquee-track span{font-size:14px;padding:0 22px}
+  .hero h1{font-size:clamp(34px,10vw,50px);letter-spacing:-1.5px}
+  .hero-rotator{font-size:clamp(16px,5vw,22px);min-height:38px;gap:6px}
+  .rotator{height:38px;min-width:130px}
+  .rotator span{font-size:clamp(16px,5vw,22px)}
+  .hero p{font-size:14px}
+  .hero-image img{height:clamp(180px,45vw,250px);transform:none}
+  .hero-sticker{width:70px;height:70px;font-size:9px;left:-6px;bottom:-10px}
+  .section{padding:40px 5%}
+  .section-heading h2{font-size:clamp(22px,6vw,30px)}
+  .menu-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .product-image{height:clamp(90px,22vw,130px)}
+  .product h3{font-size:13px}
+  .product p{font-size:10px;min-height:45px}
+  .price{font-size:14px}
+  .add-btn{padding:8px 9px;font-size:11px}
+  .about-section{grid-template-columns:1fr;gap:22px;padding:40px 5%}
+  .about-section img{max-height:180px}
+  .features{padding:20px 4%;gap:6px}
+  .feature h3{font-size:11px}
+  .feature p{font-size:9px}
+  .feature .emoji{font-size:22px}
+  .order-layout{grid-template-columns:1fr;gap:18px}
+  .panel{padding:16px}
+  .contact-section h2{font-size:clamp(22px,6vw,29px)}
+  .own-insta{padding:12px 16px;font-size:14px}
+  .own-insta svg{width:24px;height:24px}
+  .contact-link{padding:10px 14px;font-size:12px}
+  .marquee-track span{font-size:12px;padding:0 18px}
+  .cart-row{gap:6px}
 }
-@media(max-width:380px){
-  .nav-links{gap:7px}
-  .nav-links button{font-size:10px}
-  .brand img{width:68px}
-  .cart-button{font-size:11px;padding:9px}
-  .hero-rotator{font-size:18px}
-  .rotator{height:38px;min-width:140px}
-  .rotator span{height:38px;font-size:18px}
+
+@media (max-width: 380px){
+  .nav-links{gap:5px}
+  .nav-links button{font-size:9px}
+  .brand img{width:60px;height:42px}
+  .cart-button{font-size:10px;padding:7px 8px}
+  .hero-rotator{font-size:15px}
+  .rotator{height:34px;min-width:110px}
+  .rotator span{font-size:15px}
+  .menu-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .product-image{height:80px}
+  .product-info{padding:10px}
+  .product h3{font-size:12px}
+  .product p{font-size:9px;min-height:40px}
+  .price{font-size:13px}
+  .add-btn{padding:7px 8px;font-size:10px}
 }
 </style>
 </head>
@@ -823,7 +908,6 @@ footer small{color:#7a6a61}
 
       <h1>Mutluluk<br>bir <span>dilim</span> uzakta.</h1>
 
-      <!-- ANA EKRANDA KUTUCUK ROTATOR (4 yazı) -->
       <div class="hero-rotator">
         <span class="static-text">Her dilimde</span>
         <div class="rotator">
@@ -852,7 +936,6 @@ footer small{color:#7a6a61}
     </div>
   </div>
 
-  <!-- AKAN YAZI BANDI (hero'nun hemen altında) -->
   <div class="marquee-band">
     <div class="marquee-track">
       <span>🍕 HER DİLİMDE MUTLULUK</span>
@@ -885,26 +968,54 @@ footer small{color:#7a6a61}
   </div>
 </section>
 
-<!-- HAKKIMIZDA -->
+<!-- HAKKIMIZDA - YENİ İÇERİK -->
 <section class="tab-page" id="page-hakkimizda">
   <div class="section about-section">
     <div class="about-img-wrap">
       <img src="dilimo_nobg.png" alt="Dilimo Pizza">
     </div>
 
-    <div>
-      <span class="about-label">BİZ KİMİZ?</span>
-      <h2>Merhaba, biz Dilimo!</h2>
+    <div class="about-content">
+      <span class="about-label">MERHABA...</span>
+      <h2>Biz Dilimo.</h2>
+       <h2>Henüz başlamadık!</h2>
+
       <p>
-        Gaziantep'te yeni kurulan bir girişimiz. Bu girişime bir pizza alarak
-        destek ver.
+        Türkiye gibi zorlu, imkânsız görülen bir piyasada işe başlıyoruz.
+        Markayı kuran <strong>Burak</strong>, 19 yaşında bir girişimci.
+        Instagram: <a href="https://www.instagram.com/burak_msz/" target="_blank" rel="noopener">@burak_msz</a>
       </p>
-      <p><strong>Bugün bir başlangıç, yarın büyük bir hikâye. ❤️</strong></p>
+
+      <hr class="about-divider">
+
+      <p><strong>🎯 Hedefimiz?</strong><br>
+        Tüm Gaziantep'e, tüm Türkiye'ye bu imkânsızlıklardan nasıl çıkılacağını göstermek.
+        <strong>Türk malı nasıl olur</strong> bunu göstermek.
+      </p>
+
+      <hr class="about-divider">
+
+      <p><strong>🚀 Nasıl başlayacağız?</strong><br>
+        Açıkçası başlamak ilerletmekten daha zor. Gerçekten imkânsız olabilir.
+        İlk pizzayı üretmeden karşımıza çıkan devasa faturalar, rakiplerimizin devasa kadrosu
+        ve bütçesine karşın birkaç kişinin cepte <strong>0₺</strong> ile rekabet etmesi imkânsız. Olanaksız.
+      </p> <br>
+      <p>
+        Her aşamada yeni bir zorluk çıkıyor ve bu zorluklarla tek başıma başa çıkmak çok zor. Her zorlukta ağır darbe alıyoruz. Belki de bu iş olmayacak. Türkiye belki de geleceğin büyük markasını kaybedecek. Belki de markamız yürüyecek. Ancak bunu pek sanmam. Daha ilk pizzayı satmadan, üretmeden dilimo'nun neredeyse eli kolu kırıldı.
+ Sizlerden isteğimiz, gerçek Türk markasını destekleyin.
+      <p>
+        Bu yüzden yeni bir akım başlatıyoruz.
+        <span class="about-highlight">Dilimo Pizza'da ev yapımı, el yapımı pizzalarla sizlere hizmet sunuyoruz. Bir ev lezzeti...</span>
+      </p>
+
+      <p style="margin-top:18px; font-style:italic; color:#c9b6a8;">
+        ❤️ Bugün bir başlangıç, yarın büyük bir hikâye.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- MENÜ (menü + sipariş) -->
+<!-- MENÜ -->
 <section class="tab-page" id="page-menu">
 
   <div class="section">
@@ -1005,7 +1116,6 @@ footer small{color:#7a6a61}
     <p>Dilimo'nun lezzet yolculuğu burada başlıyor. ❤️</p>
     <p>📍 Gaziantep</p>
 
-    <!-- Bizim insta (üst orta) -->
     <div class="own-insta-wrap">
       <a class="own-insta" href="https://www.instagram.com/dilimo_pizza/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1017,7 +1127,6 @@ footer small{color:#7a6a61}
       </a>
     </div>
 
-    <!-- Kurucu + Gmail -->
     <div class="contact-links">
       <a class="contact-link" href="https://www.instagram.com/burak_msz/" target="_blank" rel="noopener">
         <svg class="ig-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
