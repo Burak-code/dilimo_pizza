@@ -384,6 +384,31 @@ img{max-width:100%;height:auto;display:block}
   font-size:clamp(13px,1.4vw,16px);
 }
 
+/* KAMPANYA BANDI */
+.campaign-banner {
+  background: linear-gradient(45deg, #f5c542, #ff9800);
+  color: #14100f;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 900;
+  font-size: clamp(14px, 2vw, 18px);
+  box-shadow: 0 5px 15px rgba(245, 197, 66, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.campaign-banner span {
+  font-size: clamp(11px, 1.5vw, 14px);
+  font-weight: normal;
+  background: rgba(0,0,0,0.1);
+  padding: 5px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
 /* MENU */
 .menu-grid{
   display:grid;
@@ -429,13 +454,41 @@ img{max-width:100%;height:auto;display:block}
 }
 .product-bottom{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
+  flex-direction: column;
+  gap: 10px;
   margin-top:auto;
-  gap:8px;
-  flex-wrap:wrap;
 }
-.price{font-size:clamp(15px,1.8vw,20px);font-weight:900}
+.size-select {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+.size-select label {
+  flex: 1;
+  text-align: center;
+  font-size: clamp(10px, 1.2vw, 13px);
+  background: #171110;
+  border: 1px solid var(--border);
+  padding: 8px 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: 0;
+}
+.size-select input { display: none; }
+.size-select input:checked + label {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+  font-weight: bold;
+}
+.price-add-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.price{font-size:clamp(15px,1.8vw,20px);font-weight:900; color: var(--gold);}
 .add-btn{
   border:0;
   background:var(--red);
@@ -449,7 +502,7 @@ img{max-width:100%;height:auto;display:block}
 }
 .add-btn:hover{background:var(--red-dark);transform:scale(1.06)}
 
-/* ABOUT - YENİ TASARIM */
+/* ABOUT */
 .about-section{
   display:grid;
   grid-template-columns:1fr 1.2fr;
@@ -577,7 +630,7 @@ img{max-width:100%;height:auto;display:block}
   flex-wrap:wrap;
 }
 .cart-row strong{font-size:clamp(12px,1.3vw,14px)}
-.cart-row small{color:var(--muted);font-size:clamp(10px,1.1vw,12px)}
+.cart-row small{color:var(--muted);font-size:clamp(10px,1.1vw,12px); display:block; margin-top:4px;}
 .qty{display:flex;align-items:center;gap:9px}
 .qty button{
   width:28px;height:28px;
@@ -838,6 +891,7 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
   .product-image{height:clamp(90px,22vw,130px)}
   .product h3{font-size:13px}
   .product p{font-size:10px;min-height:45px}
+  .size-select label { font-size: 9px; padding: 5px 2px; }
   .price{font-size:14px}
   .add-btn{padding:8px 9px;font-size:11px}
   .about-section{grid-template-columns:1fr;gap:22px;padding:40px 5%}
@@ -869,6 +923,7 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
   .product-info{padding:10px}
   .product h3{font-size:12px}
   .product p{font-size:9px;min-height:40px}
+  .size-select label { font-size: 8px; }
   .price{font-size:13px}
   .add-btn{padding:7px 8px;font-size:10px}
 }
@@ -952,23 +1007,23 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
   <div class="features">
     <div class="feature">
       <div class="emoji">🍕</div>
-      <h3>Lezzetli Pizzalar</h3>
-      <p>Her dilimde keyif.</p>
+      <h3>Taze Hamur</h3>
+      <p>Her gün elde açılan hamur.</p>
     </div>
     <div class="feature">
       <div class="emoji">🔥</div>
-      <h3>Sıcacık Lezzet</h3>
-      <p>Özenle hazırlanan pizzalar.</p>
+      <h3>Gurme Lezzet</h3>
+      <p>Bol malzeme, kaliteli içerik.</p>
     </div>
     <div class="feature">
       <div class="emoji">🛵</div>
-      <h3>Paket Servis</h3>
-      <p>Kapına kadar lezzet.</p>
+      <h3>Ücretsiz Kurye</h3>
+      <p>Sadece pizzaya para öde!</p>
     </div>
   </div>
 </section>
 
-<!-- HAKKIMIZDA - YENİ İÇERİK -->
+<!-- HAKKIMIZDA - PROFESYONEL GİRİŞİMCİ HİKAYESİ -->
 <section class="tab-page" id="page-hakkimizda">
   <div class="section about-section">
     <div class="about-img-wrap">
@@ -978,34 +1033,34 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
     <div class="about-content">
       <span class="about-label">MERHABA...</span>
       <h2>Biz Dilimoy.</h2>
-       <h2>Henüz başlamadık!</h2>
 
       <p>
-        Türkiye gibi zorlu, imkânsız görülen bir piyasada işe başlıyoruz.
-        Markayı kuran <strong>Burak</strong>, 19 yaşında bir girişimci.
+        Türkiye gibi zorlu bir piyasada, <strong>19 yaşındaki bir girişimcinin</strong> hayaliyle doğduk.
+        Markamızın kurucusu <strong>Burak</strong>, büyük zincirlerin soğuk yüzüne karşı, 
+        <strong>sıcak, samimi ve gerçek bir lezzet</strong> sunmak için yola çıktı.
         Instagram: <a href="https://www.instagram.com/burak_msz/" target="_blank" rel="noopener">@burak_msz</a>
       </p>
 
       <hr class="about-divider">
 
       <p><strong>🎯 Hedefimiz?</strong><br>
-        Tüm Gaziantep'e, tüm Türkiye'ye bu imkânsızlıklardan nasıl çıkılacağını göstermek.
-        <strong>Türk malı nasıl olur</strong> bunu göstermek.
+        Gaziantep'e ve tüm Türkiye'ye <strong>el emeğinin, taze hamurun ve gerçek lezzetin</strong> 
+        endüstriyel fırınlardan çok daha iyi olabileceğini göstermek. Türk malı, Türk emeğiyle nasıl gurme olur, bunu kanıtlamak.
       </p>
 
       <hr class="about-divider">
 
-      <p><strong>🚀 Nasıl başlayacağız?</strong><br>
-        Açıkçası başlamak ilerletmekten daha zor. Gerçekten imkânsız olabilir.
-        İlk pizzayı üretmeden karşımıza çıkan devasa faturalar, rakiplerimizin devasa kadrosu
-        ve bütçesine karşın birkaç kişinin cepte <strong>0₺</strong> ile rekabet etmesi imkânsız. Olanaksız.
-      </p> <br>
+      <p><strong>🚀 Nasıl Çalışıyoruz?</strong><br>
+        Büyük bütçelerimiz veya devasa fırınlarımız yok. Ama <strong>ev sıcaklığında, el emeğiyle ve özenle</strong> hazırlanan pizzalarımız var. 
+        Her hamur elimizle yoğuruluyor, her malzeme özenle seçiliyor.
+      </p>
+      <br>
       <p>
-        Her aşamada yeni bir zorluk çıkıyor ve bu zorluklarla tek başıma başa çıkmak çok zor. Her zorlukta ağır darbe alıyoruz. Belki de bu iş olmayacak. Türkiye belki de geleceğin büyük markasını kaybedecek. Belki de markamız yürüyecek. Ancak bunu pek sanmam. Daha ilk pizzayı satmadan, üretmeden dilimoy'un neredeyse eli kolu kırıldı.
- Sizlerden isteğimiz, gerçek Türk markasını destekleyin.
-      <p>
-        Bu yüzden yeni bir akım başlatıyoruz.
-        <span class="about-highlight">Dilimoy Pizza'da ev yapımı, el yapımı pizzalarla sizlere hizmet sunuyoruz. Bir ev lezzeti...</span>
+        <span class="about-highlight">Dilimoy Pizza'da ev yapımı, el yapımı pizzalarla sizlere hizmet sunuyoruz. Bir ev lezzeti, bir gurme dokunuş...</span>
+      </p>
+      
+      <p style="margin-top:18px;">
+        Size tek bir sözümüz var: <strong>Kurye bizden, lezzet sizden!</strong> Siz sadece pizzanın keyfini çıkarın.
       </p>
 
       <p style="margin-top:18px; font-style:italic; color:#c9b6a8;">
@@ -1020,10 +1075,21 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
 
   <div class="section">
     <div class="section-heading">
-      <span class="eyebrow">DILIMOY LEZZETLERİ</span>
+      <span class="eyebrow">GÜNCEL TARİFE</span>
       <h2>Hangisi senin favorin? 🍕</h2>
-      <p>Menümüzden seç, sepetine ekle.</p>
+      <p>Menümüzden seç, boyutunu belirle ve sepetine ekle.</p>
     </div>
+
+    <!-- KAMPANYALAR -->
+    <div class="campaign-banner">
+      🔥 2. PİZZADA %30 İNDİRİM! 🔥
+      <span>Tüm boyutlarda geçerlidir. (2. pizza üzerinden net %30 indirim)</span>
+    </div>
+    <div class="campaign-banner" style="background: linear-gradient(45deg, #e5232d, #bd1721); color: white; box-shadow: 0 5px 15px rgba(229, 35, 45, 0.3);">
+      🕒 ÖĞLE SAATİ FIRSATI (12:00 - 15:00)
+      <span style="background: rgba(255,255,255,0.2);">Bu saatler arasında tüm Küçük Boy Pizzalarda %15 İndirim!</span>
+    </div>
+
     <div class="menu-grid" id="products"></div>
   </div>
 
@@ -1040,8 +1106,8 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
     </div>
     <div class="feature">
       <div class="emoji">🛵</div>
-      <h3>Paket Servis</h3>
-      <p>Kapına kadar lezzet.</p>
+      <h3>Ücretsiz Kurye</h3>
+      <p>Kapına kadar ücretsiz.</p>
     </div>
   </div>
 
@@ -1062,7 +1128,10 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
           <span>Toplam</span>
           <span id="total">0 TL</span>
         </div>
-        <p style="color: #39ff14; text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;">Teslimat tamamen ücretsiz! Sadece pizzaya para öde!</p>
+        <p style="color: #39ff14; text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; font-weight: bold; text-align: center; margin-top: 15px; font-size: 14px;">
+          🛵 Teslimat tamamen ücretsiz!<br>Sadece pizzaya para öde!
+        </p> <br>
+<p> (indirimsiz fiyat. indirimleri öğrenmek için siparişi ver)</p>
       </div>
 
       <div class="panel">
@@ -1099,7 +1168,7 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
 
           <div id="message"></div>
           <p class="notice">
-            Şu anlık henüz üretime, satışa başlamadık. En kısa sürede indirimlerle buradayız!
+            Siparişiniz WhatsApp üzerinden bize iletilecektir.
           </p>
         </form>
       </div>
@@ -1117,7 +1186,7 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
     <p>📍 Gaziantep</p>
 
     <div class="own-insta-wrap">
-      <a class="own-insta" href="https://www.instagram.com/dilimo_pizza/" target="_blank" rel="noopener">
+      <a class="own-insta" href="https://www.instagram.com/dilimoy_pizza/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -1155,7 +1224,7 @@ footer small{color:#7a6a61;font-size:clamp(9px,1.1vw,12px)}
     <img src="dilimoy_nobg.png" alt="Dilimoy">
   </div>
   <p>Her dilimde mutluluk. 🍕</p>
-  <small>© <span id="year"></span> Dilimoy Pizza. Tüm hakları saklıdır.</small>
+  <small>© <span id="year"></span> Dilimoy Pizza. Gaziantep • Şırnak • Tavas • Muğla Temsilcileri</small>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -1178,13 +1247,46 @@ function goCart(){
 /* ============================================
    WHATSAPP NUMARASI
    Ülke kodlu, başında + veya 0 OLMADAN yaz.
-   Örnek: 905518902507
    ============================================ */
 const WHATSAPP_NUMBER = "905518902507";
 
+// Görseldeki Güncel Menü
 const menu = [
-  {id:1,name:"Klasik Pizza",price:400,desc:"Sucuk ve özel sos.",
-    image:"https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=700&q=85"},
+  {
+    id: 1, 
+    name: "Margherita", 
+    desc: "Taze domates sosu, bol mozzarella ve fesleğen.", 
+    sizes: { K: 250, O: 370, B: 480 },
+    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 2, 
+    name: "Karışık", 
+    desc: "Sucuk, salam, sosis, mantar, mısır, zeytin.", 
+    sizes: { K: 280, O: 400, B: 520 },
+    image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 3, 
+    name: "Sucuklu", 
+    desc: "Bol kaliteli sucuk, mozzarella ve özel sos.", 
+    sizes: { K: 280, O: 400, B: 520 },
+    image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 4, 
+    name: "Vejetaryen", 
+    desc: "Mevsim yeşillikleri, biber, mantar, mısır, zeytin.", 
+    sizes: { K: 260, O: 380, B: 500 },
+    image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=700&q=85"
+  },
+  {
+    id: 5, 
+    name: "Etli / Pepperoni", 
+    desc: "Özel baharatlı dana kıyma ve pepperoni dilimleri.", 
+    sizes: { K: 310, O: 450, B: 580 },
+    image: "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=700&q=85"
+  }
 ];
 
 let cart = [];
@@ -1199,29 +1301,64 @@ function renderProducts(){
       <div class="product-info">
         <h3>${item.name}</h3>
         <p>${item.desc}</p>
+        
         <div class="product-bottom">
-          <span class="price">${money(item.price)}</span>
-          <button class="add-btn" onclick="addToCart(${item.id})">+ Ekle</button>
+          <div class="size-select">
+            <input type="radio" id="size-K-${item.id}" name="size-${item.id}" value="Küçük" data-price="${item.sizes.K}" checked>
+            <label for="size-K-${item.id}">Küçük</label>
+            
+            <input type="radio" id="size-O-${item.id}" name="size-${item.id}" value="Orta" data-price="${item.sizes.O}">
+            <label for="size-O-${item.id}">Orta</label>
+            
+            <input type="radio" id="size-B-${item.id}" name="size-${item.id}" value="Büyük" data-price="${item.sizes.B}">
+            <label for="size-B-${item.id}">Büyük</label>
+          </div>
+          
+          <div class="price-add-wrap">
+            <span class="price" id="price-display-${item.id}">${money(item.sizes.K)}</span>
+            <button class="add-btn" onclick="addToCart(${item.id})">+ Ekle</button>
+          </div>
         </div>
       </div>
     </article>
   `).join("");
+
+  // Boyut değiştiğinde fiyatı güncelle
+  menu.forEach(item => {
+    const radios = document.querySelectorAll(`input[name="size-${item.id}"]`);
+    radios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const newPrice = e.target.getAttribute('data-price');
+        document.getElementById(`price-display-${item.id}`).textContent = money(newPrice);
+      });
+    });
+  });
 }
 
 function addToCart(id){
   const item = menu.find(p => p.id === id);
-  const existing = cart.find(p => p.id === id);
-  if(existing) existing.qty++;
-  else cart.push({...item,qty:1});
+  const selectedSizeRadio = document.querySelector(`input[name="size-${id}"]:checked`);
+  const size = selectedSizeRadio.value;
+  const price = parseInt(selectedSizeRadio.getAttribute('data-price'));
+  
+  // Sepette aynı ürün ve aynı boyut var mı?
+  const existing = cart.find(p => p.id === id && p.size === size);
+  
+  if(existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, name: item.name, size: size, price: price, qty: 1 });
+  }
+  
   renderCart();
-  showToast(`🍕 ${item.name} sepete eklendi!`);
+  showToast(`🍕 ${item.name} (${size}) sepete eklendi!`);
 }
 
-function changeQty(id,amount){
-  const item = cart.find(p => p.id === id);
+function changeQty(id, size, amount){
+  const item = cart.find(p => p.id === id && p.size === size);
   if(!item) return;
   item.qty += amount;
-  if(item.qty <= 0) cart = cart.filter(p => p.id !== id);
+  if(item.qty <= 0) cart = cart.filter(p => !(p.id === id && p.size === size));
   renderCart();
 }
 
@@ -1236,13 +1373,13 @@ function renderCart(){
     ? cart.map(p => `
       <div class="cart-row">
         <div>
-          <strong>${p.name}</strong><br>
+          <strong>${p.name} <span style="color:var(--red);font-size:12px;">(${p.size})</span></strong><br>
           <small>${money(p.price)}</small>
         </div>
         <div class="qty">
-          <button type="button" onclick="changeQty(${p.id},-1)">−</button>
+          <button type="button" onclick="changeQty(${p.id},'${p.size}',-1)">−</button>
           <span>${p.qty}</span>
-          <button type="button" onclick="changeQty(${p.id},1)">+</button>
+          <button type="button" onclick="changeQty(${p.id},'${p.size}',1)">+</button>
         </div>
         <strong>${money(p.price*p.qty)}</strong>
       </div>
@@ -1286,8 +1423,18 @@ document.getElementById("orderForm").addEventListener("submit", event=>{
 
   // Sepet satırlarını oluştur
   const itemLines = cart.map(p =>
-    `• ${p.name} x${p.qty} = ${money(p.price*p.qty)}`
+    `• ${p.name} (${p.size}) x${p.qty} = ${money(p.price*p.qty)}`
   ).join("\n");
+
+  // Kampanya notu
+  let campaignNote = "";
+  if(cart.length > 1) campaignNote = "\n🎉 *2. Pizzada %30 indirim uygulandı mı?*";
+  
+  const now = new Date();
+  const hours = now.getHours();
+  if(hours >= 12 && hours < 15 && cart.some(p => p.size === 'Küçük')) {
+    campaignNote += "\n🕒 *Öğle Saati (K15) indirimi uygulandı mı?*";
+  }
 
   // WhatsApp mesajı
   const message =
@@ -1296,7 +1443,7 @@ document.getElementById("orderForm").addEventListener("submit", event=>{
 *Sepet:*
 ${itemLines}
 
-*Toplam:* ${money(total)}
+*Toplam:* ${money(total)} ${campaignNote}
 
 *Müşteri Bilgileri:*
 👤 ${form.get("name")}
@@ -1304,6 +1451,7 @@ ${itemLines}
 📍 ${form.get("district")}
 🏠 ${form.get("address")}
 💳 Ödeme: ${form.get("payment")}
+🛵 *Teslimat:* Ücretsiz Kurye
 ${form.get("note") ? "📝 Not: " + form.get("note") : ""}
 
 Teşekkürler! ❤️`;
